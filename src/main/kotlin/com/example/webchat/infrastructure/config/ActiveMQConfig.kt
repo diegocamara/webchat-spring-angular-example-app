@@ -1,5 +1,6 @@
 package com.example.webchat.infrastructure.config
 
+import com.example.webchat.infrastructure.properties.BrokerProperties
 import org.apache.activemq.broker.BrokerService
 import org.apache.activemq.security.AuthenticationUser
 import org.apache.activemq.security.SimpleAuthenticationPlugin

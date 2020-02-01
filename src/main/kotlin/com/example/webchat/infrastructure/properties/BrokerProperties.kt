@@ -1,4 +1,4 @@
-package com.example.webchat.infrastructure.config
+package com.example.webchat.infrastructure.properties
 
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.boot.context.properties.ConstructorBinding
@@ -8,6 +8,6 @@ import org.springframework.boot.context.properties.ConstructorBinding
 data class BrokerProperties(
         val protocol: String,
         val host: String,
-        val port: Long,
+        val port: Int,
         val username: String,
         val password: String)

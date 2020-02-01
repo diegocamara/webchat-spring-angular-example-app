@@ -6,8 +6,8 @@ import org.springframework.boot.runApplication
 
 @SpringBootApplication
 @ConfigurationPropertiesScan
-class WebchatApplication
+class WebChatApplication
 
 fun main(args: Array<String>) {
-    runApplication<WebchatApplication>(*args)
+    runApplication<WebChatApplication>(*args)
 }

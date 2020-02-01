@@ -17,10 +17,13 @@ repositories {
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-websocket")
+    implementation("org.springframework.boot:spring-boot-starter-amqp")
+    implementation("org.springframework.boot:spring-boot-starter-reactor-netty")
+    implementation("org.springframework.boot:spring-boot-starter-activemq")
+    implementation("org.apache.activemq:activemq-stomp")
+    implementation("org.apache.activemq:activemq-jaas")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-    implementation("org.apache.activemq:activemq-core:5.7.0")
-//    implementation("org.apache.activemq:activemq-stomp:5.15.11")
     testImplementation("org.springframework.boot:spring-boot-starter-test") {
         exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
     }
