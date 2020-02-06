@@ -14,14 +14,14 @@ class WebSocketConfig(val brokerProperties: BrokerProperties) : WebSocketMessage
 
     override fun configureMessageBroker(registry: MessageBrokerRegistry) {
         registry.setApplicationDestinationPrefixes("/app")
-        registry.enableStompBrokerRelay("/topic")
+        registry.enableStompBrokerRelay("/chat")
                 .setRelayHost(brokerProperties.host)
                 .setRelayPort(brokerProperties.port)
-                .setSystemLogin(brokerProperties.username)
-                .setSystemPasscode(brokerProperties.password)
+//                .setSystemLogin(brokerProperties.username)
+//                .setSystemPasscode(brokerProperties.password)
     }
 
     override fun registerStompEndpoints(registry: StompEndpointRegistry) {
-        registry.addEndpoint("/messages")
+        registry.addEndpoint("/chat").setAllowedOrigins("http://localhost:4200")
     }
 }

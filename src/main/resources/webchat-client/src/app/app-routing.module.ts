@@ -4,12 +4,12 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'home',
-    loadChildren: './home/home.module#HomeModule'
+    path: 'chat',
+    loadChildren: './chat/chat.module#ChatModule'
   },
   {
     path: '',
-    redirectTo: '/home',
+    redirectTo: '/chat',
     pathMatch: 'full'
   }
 ];
