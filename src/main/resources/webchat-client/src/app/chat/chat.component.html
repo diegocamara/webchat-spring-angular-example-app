@@ -1,10 +1,24 @@
-<p *ngFor="let user of chatUsers">{{user}}</p>
-<!-- <mat-grid-list cols="12" rowHeight="4:1">
-  <mat-grid-tile colspan="3">
-      {{chatUsers}}
+<mat-grid-list cols="12" rowHeight="100%">
+  <mat-grid-tile style="border-right: solid 1px gray;" colspan="3">
     <chat-users [users]="chatUsers"></chat-users>
   </mat-grid-tile>
   <mat-grid-tile colspan="9">
     <chat-messages [messages]="chatMessages"></chat-messages>
+    <form
+      [formGroup]="messageForm"
+      style="width: 98%; position: absolute; bottom: 4px;"
+      (ngSubmit)="onSubmit(messageForm.value)"
+    >
+      <mat-grid-list cols="12">
+        <mat-grid-tile colspan="11">
+          <mat-form-field style="width: 100%;">
+            <input matInput placeholder="message" formControlName="message" />
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="1">
+          <button mat-raised-button color="primary" type="submit">Send</button>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </form>
   </mat-grid-tile>
-</mat-grid-list> -->
+</mat-grid-list>

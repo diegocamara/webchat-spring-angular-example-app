@@ -7,7 +7,7 @@ import java.time.LocalDateTime
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-data class Message(val type: MessageType,
+data class Message(val type: MessageType? = null,
                    val sender: String? = null,
                    val text: String? = null,
                    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss") val date: LocalDateTime? = null,

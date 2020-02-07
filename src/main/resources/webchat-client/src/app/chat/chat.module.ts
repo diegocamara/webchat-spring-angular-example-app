@@ -15,13 +15,14 @@ import { ChatComponent } from "./chat.component";
 import { ChatUsersComponent } from "./chat-users/chat-users.component";
 import { ChatMessagesComponent } from "./chat-messages/chat-messages.component";
 import { UsernameDialogComponent } from "./username-dialog/username-dialog.component";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     ChatRoutingModule,
     MatGridListModule,
     MatDialogModule,

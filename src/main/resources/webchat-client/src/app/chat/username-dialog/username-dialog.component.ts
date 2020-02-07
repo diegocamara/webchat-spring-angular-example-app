@@ -19,15 +19,15 @@ export class UsernameDialogComponent {
 
   confirm() {
     const responseMessageSubscription = this.rxStompService
-      .watch(`/chat/messages/${this.username}`)
+      .watch(`/topic/messages/${this.username}`)
       .subscribe((message: Message) => {
+        responseMessageSubscription.unsubscribe();
         let response = JSON.parse(message.body);
-        if (response.error != undefined) {
+        if (response.type == "ERROR") {
           this._snackBar.open(response.error, "", {
             duration: 2000
           });
         } else {
-          responseMessageSubscription.unsubscribe();
           this.dialogRef.close(response);
         }
       });

@@ -14,7 +14,7 @@ class WebSocketConfig(val brokerProperties: BrokerProperties) : WebSocketMessage
 
     override fun configureMessageBroker(registry: MessageBrokerRegistry) {
         registry.setApplicationDestinationPrefixes("/app")
-        registry.enableStompBrokerRelay("/chat")
+        registry.enableStompBrokerRelay("/topic")
                 .setRelayHost(brokerProperties.host)
                 .setRelayPort(brokerProperties.port)
 //                .setSystemLogin(brokerProperties.username)

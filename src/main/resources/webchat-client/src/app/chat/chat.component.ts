@@ -3,6 +3,7 @@ import { RxStompService } from "@stomp/ng2-stompjs";
 import { MatDialog } from "@angular/material/dialog";
 import { Message } from "@stomp/stompjs";
 import { UsernameDialogComponent } from "./username-dialog/username-dialog.component";
+import { FormBuilder, FormGroup } from "@angular/forms";
 
 @Component({
   selector: "chat-component",
@@ -13,11 +14,17 @@ export class ChatComponent implements OnInit {
   sender: string;
   chatUsers: any[];
   chatMessages: any[] = [];
+  messageForm: FormGroup;
 
   constructor(
     private rxStompService: RxStompService,
-    private dialog: MatDialog
-  ) {}
+    private dialog: MatDialog,
+    private formBuilder: FormBuilder
+  ) {
+    this.messageForm = formBuilder.group({
+      message: ""
+    });
+  }
 
   ngOnInit() {
     const usernameDialog = this.dialog.open(UsernameDialogComponent, {
@@ -30,30 +37,27 @@ export class ChatComponent implements OnInit {
       this.sender = result.sender;
       this.chatUsers = result.chatUsers;
       this.rxStompService
-        .watch("/chat/messages")
+        .watch("/topic/messages")
         .subscribe((message: Message) => {
           let response = JSON.parse(message.body);
-          console.log(response.type);
-          switch (response.type) {
-            case "NEW_USER": {
-              this.chatUsers = response.chatUsers;              
-              break;
+          if (response.type != "ERROR") {
+            if (response.type == "NEW_USER") {
+              this.chatUsers = response.chatUsers;
             }
-            case "TEXT": {
-              break;
-            }
-            case "ERROR": {
-              break;
-            }
-            case "USER_LEAVE": {
-              break;
-            }
+            this.chatMessages.push(response);
           }
-
-          this.chatMessages.push(response);
-
-          
         });
     });
+  }
+
+  onSubmit(messageFormData) {
+    this.rxStompService.publish({
+      destination: "/app/chat/messages",
+      body: JSON.stringify({
+        sender: this.sender,
+        text: messageFormData.message
+      })
+    });
+    this.messageForm.reset();
   }
 }
